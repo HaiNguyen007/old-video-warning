@@ -1,0 +1,54 @@
+<?php
+/**
+ * @file mymodule.module
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function mymodule_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return "plugins/$plugin";
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function mymodule_theme($existing, $type, $theme, $path) {
+  return array(
+    'mymodule_old_video' => array(
+      'variables' => array(
+        'node' => NULL,
+      ),
+      'template' => 'templates/mymodule-old-video',
+    ),
+  );
+}
+
+/**
+ * Implements hook_createapi_content_types().
+ */
+function mymodule_createapi_content_types() {
+  return array(
+    'video' => array(
+      'version' => '1.0',
+      'path' => 'videos.json',
+      'wrapper' => 'videos',
+      'row' => 'video',
+      'data' => array(
+        'properties' => array(
+          'nid' => 'nid',
+          'title' => 'title',
+          'changed' => 'changed',
+        ),
+        'path' => 'path',
+      ),
+      'filters' => array(
+        'properties' => array(
+          'nid' => 'nid',
+        ),
+      ),
+    ),
+  );
+}
