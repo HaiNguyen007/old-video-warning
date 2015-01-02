@@ -8,12 +8,12 @@ $plugin = array(
   'title' => t('Old Video Warning'),
   'description' => t('Displays a warning message when the current video is out of date.'),
   'single' => TRUE,
-  'render callback' => 'old_video_content_type_render',
+  'render callback' => 'mymodule_old_video_content_type_render',
   'required context' => new ctools_context_required(t('Node'), 'node'),
   'category' => t('My Module'),
 );
 
-function old_video_content_type_render($subtype, $conf, $args, $context) {
+function mymodule_old_video_content_type_render($subtype, $conf, $args, $context) {
   $settings = array(
     'nid' => $context->data->nid,
     'changed' => $context->data->changed,
